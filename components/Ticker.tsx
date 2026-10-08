@@ -35,7 +35,7 @@ export default function Ticker({ products }: TickerProps) {
         .custom-ticker-track {
           display: flex;
           width: max-content;
-          animation: customTickerScroll 28s linear infinite !important;
+          animation: customTickerScroll 65s linear infinite !important;
           will-change: transform;
         }
         .ticker:hover .custom-ticker-track,

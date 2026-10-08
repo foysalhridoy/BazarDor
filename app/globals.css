@@ -48,7 +48,7 @@
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 30s linear infinite !important;
+  animation: ticker-scroll 65s linear infinite !important;
   will-change: transform;
 }
 
