@@ -1,4 +1,4 @@
-# 🛒 বাজার দর (BazarDor) — নিত্যপণ্যের বাজারদর ট্র্যাকার
+# 🛒 বাজার দর (BazarDor) - নিত্যপণ্যের বাজারদর ট্র্যাকার
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
@@ -11,9 +11,6 @@
 ## 📌 প্রকল্পের বিবরণ (Project Description)
 
 **বাজার দর (BazarDor)** হলো একটি আধুনিক, দ্রুতগতির এবং মোবাইল-রেসপন্সিভ ওয়েব অ্যাপ্লিকেশন যা বাংলাদেশের বিভিন্ন বাজারের নিত্যপ্রয়োজনীয় পণ্যসমূহের (চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলা) দৈনিক দামের হালনাগাদ তথ্য প্রদান করে। এর মাধ্যমে সাধারণ ক্রেতারা কোন পণ্যের দাম কত বাড়ল বা কমল তা এক নজরে পর্যবেক্ষণ করতে পারেন এবং বিভিন্ন বাজারের সর্বনিম্ন, সর্বাধিক ও গড় দাম তুলনা করে কেনাকাটার সঠিক সিদ্ধান্ত নিতে পারেন।
-
-- **লাইভ ডেমো লিংক (Live Link):** [https://bazardor-json.vercel.app/](https://bazardor-json.vercel.app/)
-- **গিটহাব রিপোজিটরি লিংক (GitHub Repository):** [https://github.com/foysalhridoy/BazarDor](https://github.com/foysalhridoy/BazarDor)
 
 ---
 
@@ -83,7 +80,7 @@ BETTER_AUTH_URL="http://localhost:3000"
 npm run dev
 ```
 
-৫. ব্রাউজারে প্রবেশ করুন: [http://localhost:3000](http://localhost:3000)
+৫. Visit the website: [http://baazardoor.vercel.app](http://baazardoor.vercel.app)
 
 ৬. প্রোডাকশন বিল্ড তৈরি ও টেস্ট করতে:
 ```bash
