@@ -2,8 +2,11 @@ import { betterAuth } from "better-auth";
 import Database from "better-sqlite3";
 import path from "path";
 
-// Initialize SQLite database instance
-const dbPath = path.join(process.cwd(), "bazardor.db");
+// Initialize SQLite database instance (supports Vercel serverless /tmp)
+const isVercel = Boolean(process.env.VERCEL);
+const dbPath = isVercel
+  ? path.join("/tmp", "bazardor.db")
+  : path.join(process.cwd(), "bazardor.db");
 const db = new Database(dbPath);
 
 // Ensure tables exist before BetterAuth checks
@@ -52,8 +55,12 @@ db.exec(`
   );
 `);
 
+const vercelLiveUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
+
 export const auth = betterAuth({
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  baseURL:
+    process.env.BETTER_AUTH_URL ||
+    (vercelLiveUrl || "http://localhost:3000"),
   secret:
     process.env.BETTER_AUTH_SECRET ||
     "bazardor_super_secret_auth_token_key_2026_exam",
@@ -70,7 +77,9 @@ export const auth = betterAuth({
       "http://127.0.0.1:3001",
       "http://localhost:3002",
       "http://127.0.0.1:3002",
-      process.env.BETTER_AUTH_URL || "http://localhost:3000",
+      "https://baazardoor.vercel.app",
+      ...(vercelLiveUrl ? [vercelLiveUrl] : []),
+      ...(process.env.BETTER_AUTH_URL ? [process.env.BETTER_AUTH_URL] : []),
     ];
     if (origin) {
       list.push(origin);
