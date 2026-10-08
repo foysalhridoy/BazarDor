@@ -36,7 +36,7 @@ export default async function HomePage() {
               আজকের বাজারের দাম এক নজরে
             </h1>
             <p className="mt-4 text-base text-base-content/75 sm:text-lg leading-relaxed">
-              চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক
+              চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম, বাজারভিত্তিক
               বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
             </p>
             <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-3">

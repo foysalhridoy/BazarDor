@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { getCategories, getProducts } from "@/lib/api";
 
 export const metadata: Metadata = {
-  title: "বাজার দর — নিত্যপণ্যের আজকের বাজারদর এক নজরে",
+  title: "বাজার দর | নিত্যপণ্যের আজকের বাজারদর এক নজরে",
   description:
     "চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার আজকের বাজারদর, বিভিন্ন বাজারের তুলনা ও মূল্য পর্যালোচনা এক জায়গায়।",
   applicationName: "বাজার দর",
