@@ -1,4 +1,4 @@
-# 🛒 বাজার দর (BazarDor) — নিত্যপণ্যের বাজারদর ট্র্যাকার
+# 🛒 বাজার দর (BazarDor) - নিত্যপণ্যের বাজারদর ট্র্যাকার
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
