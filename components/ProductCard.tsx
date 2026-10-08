@@ -27,6 +27,7 @@ export default function ProductCard({
   return (
     <Link
       href={`/product/${product.slug}`}
+      prefetch={true}
       className="card border border-base-300 bg-base-100 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-md focus-visible:outline-2 focus-visible:outline-primary group"
     >
       <div className="card-body gap-3 p-4">

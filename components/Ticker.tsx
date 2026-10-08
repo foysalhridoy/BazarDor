@@ -59,6 +59,7 @@ export default function Ticker({ products }: TickerProps) {
               >
                 <Link
                   href={`/product/${product.slug}`}
+                  prefetch={true}
                   className="flex items-center gap-1.5 hover:text-primary transition-colors"
                 >
                   <span aria-hidden="true" className="text-base">

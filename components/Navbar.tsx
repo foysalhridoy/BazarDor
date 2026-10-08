@@ -110,6 +110,7 @@ export default function Navbar({ categories }: NavbarProps) {
                 <li key={cat.id} className="shrink-0">
                   <Link
                     href={`/category/${cat.slug}`}
+                    prefetch={true}
                     className={`btn btn-sm whitespace-nowrap transition-colors ${
                       isActive
                         ? "btn-primary shadow-sm"
