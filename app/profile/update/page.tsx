@@ -72,7 +72,7 @@ export default function ProfileUpdatePage() {
           </p>
         </header>
 
-        <div className="rounded-3xl border border-base-300 bg-base-100 p-8 shadow-sm">
+        <div className="rounded-3xl border border-base-300 bg-base-100 p-5 sm:p-8 shadow-sm">
           {error && (
             <div role="alert" className="alert alert-error text-sm mb-4">
               <span aria-hidden="true">⚠️</span>

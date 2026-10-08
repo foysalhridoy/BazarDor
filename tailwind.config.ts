@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "420px",
+      },
       fontFamily: {
         bengali: [
           "'Google Sans'",

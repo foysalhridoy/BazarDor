@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center min-h-[65vh] gap-6 px-4 py-16 text-center">
-      <div className="rounded-3xl border border-base-300 bg-base-100 p-10 sm:p-14 max-w-lg w-full shadow-sm">
+      <div className="rounded-3xl border border-base-300 bg-base-100 p-6 sm:p-12 max-w-lg w-full shadow-sm">
         <span aria-hidden="true" className="text-7xl block mb-4">
           🛒
         </span>

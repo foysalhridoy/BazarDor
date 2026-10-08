@@ -34,7 +34,7 @@ export default function ProfilePage() {
         </header>
 
         {/* User Profile Card */}
-        <div className="flex flex-col items-center gap-6 rounded-3xl border border-base-300 bg-base-100 p-8 shadow-sm sm:flex-row sm:items-center">
+        <div className="flex flex-col items-center gap-6 rounded-3xl border border-base-300 bg-base-100 p-5 sm:p-8 shadow-sm sm:flex-row sm:items-center">
           <div className="avatar placeholder shrink-0">
             <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary text-primary-content flex items-center justify-center text-3xl sm:text-4xl font-bold shadow-md ring-4 ring-primary/15 aspect-square">
               <span>

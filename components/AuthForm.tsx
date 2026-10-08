@@ -164,7 +164,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto rounded-3xl border border-base-300 bg-base-100 p-6 sm:p-8 shadow-sm">
+    <div className="w-full max-w-md mx-auto rounded-3xl border border-base-300 bg-base-100 p-5 sm:p-8 shadow-sm">
       <div className="text-center mb-6">
         <h1 className="text-2xl sm:text-3xl font-bold text-base-content">
           {isSignUp ? "নতুন অ্যাকাউন্ট খুলুন" : "সাইন ইন করুন"}

@@ -16,7 +16,7 @@ export default function ErrorPage({
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center min-h-[60vh] gap-6 px-4 py-16 text-center">
-      <div className="rounded-3xl border border-base-300 bg-base-100 p-10 max-w-md w-full shadow-sm">
+      <div className="rounded-3xl border border-base-300 bg-base-100 p-6 sm:p-10 max-w-md w-full shadow-sm">
         <p aria-hidden="true" className="text-6xl mb-4">
           ⚠️
         </p>
@@ -30,11 +30,11 @@ export default function ErrorPage({
           <button
             type="button"
             onClick={() => reset()}
-            className="btn btn-primary"
+            className="btn btn-primary w-full sm:w-auto"
           >
             আবার চেষ্টা করুন
           </button>
-          <Link href="/" className="btn btn-outline">
+          <Link href="/" className="btn btn-outline w-full sm:w-auto">
             হোম পেজে যান
           </Link>
         </div>
