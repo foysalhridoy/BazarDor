@@ -14,8 +14,7 @@
 .env*.local
 .env
 
-# Database
-*.db
+# Database journals
 *.db-journal
 
 # Debug logs

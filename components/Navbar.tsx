@@ -21,8 +21,7 @@ export default function Navbar({ categories }: NavbarProps) {
     try {
       await signOut();
       toast.success("সফলভাবে সাইন আউট করা হয়েছে।");
-      router.push("/");
-      router.refresh();
+      window.location.href = "/";
     } catch {
       toast.error("সাইন আউট ব্যর্থ হয়েছে। আবার চেষ্টা করুন।");
     }

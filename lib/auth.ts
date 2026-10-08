@@ -1,12 +1,23 @@
 import { betterAuth } from "better-auth";
 import Database from "better-sqlite3";
 import path from "path";
+import fs from "fs";
 
-// Initialize SQLite database instance (supports Vercel serverless /tmp)
+// Initialize SQLite database instance (supports Vercel serverless /tmp with persistent seed)
 const isVercel = Boolean(process.env.VERCEL);
 const dbPath = isVercel
   ? path.join("/tmp", "bazardor.db")
   : path.join(process.cwd(), "bazardor.db");
+
+if (isVercel && !fs.existsSync("/tmp/bazardor.db")) {
+  const seedPath = path.join(process.cwd(), "bazardor.db");
+  if (fs.existsSync(seedPath)) {
+    try {
+      fs.copyFileSync(seedPath, "/tmp/bazardor.db");
+    } catch {}
+  }
+}
+
 const db = new Database(dbPath);
 
 // Ensure tables exist before BetterAuth checks
@@ -14,7 +25,7 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS user (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE COLLATE NOCASE,
     emailVerified INTEGER NOT NULL DEFAULT 0,
     image TEXT,
     createdAt INTEGER NOT NULL,

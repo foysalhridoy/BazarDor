@@ -32,13 +32,14 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
   const validate = () => {
     const errs: Record<string, string> = {};
+    const cleanEmail = email.trim().toLowerCase();
 
     if (isSignUp && name.trim().length < 2) {
       errs.name = "নাম কমপক্ষে ২ অক্ষরের হতে হবে।";
     }
 
-    if (!EMAIL_REGEX.test(email.trim())) {
-      errs.email = "সঠিক ইমেইল ঠিকানা দিন।";
+    if (!cleanEmail || !EMAIL_REGEX.test(cleanEmail)) {
+      errs.email = "সঠিক ইমেইল ঠিকানা দিন (যেমন: user@example.com)।";
     }
 
     if (password.length < 4) {
@@ -59,12 +60,13 @@ export default function AuthForm({ mode }: AuthFormProps) {
     }
 
     setIsLoading(true);
+    const cleanEmail = email.trim().toLowerCase();
 
     try {
       if (isSignUp) {
         const res = await signUp.email({
           name: name.trim(),
-          email: email.trim(),
+          email: cleanEmail,
           password,
         });
 
@@ -86,14 +88,12 @@ export default function AuthForm({ mode }: AuthFormProps) {
         }
 
         toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে! স্বাগতম।");
-        try {
-          await signIn.email({ email: email.trim(), password });
-        } catch {}
-        router.push(callbackURL);
-        router.refresh();
+        // Use hard navigation so session cookie and useSession hook immediately update in Navbar
+        window.location.href = callbackURL;
+        return;
       } else {
         const res = await signIn.email({
-          email: email.trim(),
+          email: cleanEmail,
           password,
         });
 
@@ -112,8 +112,9 @@ export default function AuthForm({ mode }: AuthFormProps) {
         }
 
         toast.success("সফলভাবে সাইন ইন হয়েছে!");
-        router.push(callbackURL);
-        router.refresh();
+        // Use hard navigation so session cookie and useSession hook immediately update in Navbar
+        window.location.href = callbackURL;
+        return;
       }
     } catch (err: any) {
       const msg = err?.message || "সার্ভারে সমস্যা হয়েছে। আবার চেষ্টা করুন।";
@@ -152,8 +153,8 @@ export default function AuthForm({ mode }: AuthFormProps) {
         toast.error(`${provider} দিয়ে সাইন ইন করতে সমস্যা হয়েছে।`);
       } else {
         toast.success(`${provider === "google" ? "Google" : "GitHub"} অ্যাকাউন্ট দিয়ে সফলভাবে যুক্ত হয়েছেন!`);
-        router.push(callbackURL);
-        router.refresh();
+        window.location.href = callbackURL;
+        return;
       }
     } catch {
       toast.error("সোশ্যাল লগইনে সমস্যা হয়েছে।");
