@@ -27,7 +27,6 @@ export default function AuthForm({ mode }: AuthFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,12 +41,8 @@ export default function AuthForm({ mode }: AuthFormProps) {
       errs.email = "সঠিক ইমেইল ঠিকানা দিন।";
     }
 
-    if (password.length < 8) {
-      errs.password = `পাসওয়ার্ড কমপক্ষে ${toBanglaDigits(8)} অক্ষরের হতে হবে।`;
-    }
-
-    if (isSignUp && password !== confirmPassword) {
-      errs.confirmPassword = "দুটি পাসওয়ার্ড মিলছে না।";
+    if (password.length < 4) {
+      errs.password = `পাসওয়ার্ড কমপক্ষে ${toBanglaDigits(4)} অক্ষরের হতে হবে।`;
     }
 
     return errs;
@@ -74,13 +69,26 @@ export default function AuthForm({ mode }: AuthFormProps) {
         });
 
         if (res.error) {
-          const msg = res.error.message || "রেজিস্ট্রেশন করা যায়নি।";
+          const rawMsg = res.error.message || "";
+          let msg = "রেজিস্ট্রেশন করা যায়নি।";
+          if (
+            rawMsg.toLowerCase().includes("already exist") ||
+            rawMsg.toLowerCase().includes("unique") ||
+            rawMsg.toLowerCase().includes("registered")
+          ) {
+            msg = "এই ইমেইল দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট রয়েছে। দয়া করে সাইন ইন করুন।";
+          } else if (rawMsg) {
+            msg = rawMsg;
+          }
           setErrors({ form: msg });
           toast.error(msg);
           return;
         }
 
         toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে! স্বাগতম।");
+        try {
+          await signIn.email({ email: email.trim(), password });
+        } catch {}
         router.push(callbackURL);
         router.refresh();
       } else {
@@ -90,11 +98,14 @@ export default function AuthForm({ mode }: AuthFormProps) {
         });
 
         if (res.error) {
-          const msg =
-            res.error.message?.includes("credentials") ||
-            res.error.message?.includes("password")
-              ? "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।"
-              : res.error.message || "সাইন ইন করা যায়নি।";
+          const rawMsg = res.error.message || "";
+          let msg = "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।";
+          if (
+            rawMsg.toLowerCase().includes("user not found") ||
+            rawMsg.toLowerCase().includes("no user")
+          ) {
+            msg = "এই ইমেইলে কোনো অ্যাকাউন্ট পাওয়া যায়নি। অনুগ্রহ করে আগে সাইন আপ করুন।";
+          }
           setErrors({ form: msg });
           toast.error(msg);
           return;
@@ -219,7 +230,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           <input
             type="password"
             autoComplete={isSignUp ? "new-password" : "current-password"}
-            placeholder={`কমপক্ষে ${toBanglaDigits(8)} অক্ষর`}
+            placeholder={`কমপক্ষে ${toBanglaDigits(4)} অক্ষর`}
             className={`input input-bordered w-full ${
               errors.password ? "input-error" : ""
             }`}
@@ -230,29 +241,6 @@ export default function AuthForm({ mode }: AuthFormProps) {
             <span className="mt-1 text-xs text-error">{errors.password}</span>
           )}
         </div>
-
-        {isSignUp && (
-          <div className="form-control w-full">
-            <label className="label-text mb-1 font-medium text-base-content/80">
-              পাসওয়ার্ড নিশ্চিত করুন
-            </label>
-            <input
-              type="password"
-              autoComplete="new-password"
-              placeholder="আবার পাসওয়ার্ডটি লিখুন"
-              className={`input input-bordered w-full ${
-                errors.confirmPassword ? "input-error" : ""
-              }`}
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            {errors.confirmPassword && (
-              <span className="mt-1 text-xs text-error">
-                {errors.confirmPassword}
-              </span>
-            )}
-          </div>
-        )}
 
         <button
           type="submit"

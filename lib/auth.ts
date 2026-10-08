@@ -58,7 +58,29 @@ export const auth = betterAuth({
     process.env.BETTER_AUTH_SECRET ||
     "bazardor_super_secret_auth_token_key_2026_exam",
   database: db,
+  trustedOrigins: async (request) => {
+    const origin =
+      typeof request?.headers?.get === "function"
+        ? request.headers.get("origin")
+        : (request?.headers as any)?.origin;
+    const list = [
+      "http://localhost:3000",
+      "http://127.0.0.1:3000",
+      "http://localhost:3001",
+      "http://127.0.0.1:3001",
+      "http://localhost:3002",
+      "http://127.0.0.1:3002",
+      process.env.BETTER_AUTH_URL || "http://localhost:3000",
+    ];
+    if (origin) {
+      list.push(origin);
+    }
+    return list;
+  },
   emailAndPassword: {
     enabled: true,
+    minPasswordLength: 4,
+    autoSignIn: true,
   },
 });
+
