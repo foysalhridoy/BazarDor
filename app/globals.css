@@ -28,31 +28,31 @@
   color: #64748b !important;
 }
 
-/* Marquee Price Ticker */
+/* Marquee Price Ticker - GPU Accelerated Infinite Scroll */
 @keyframes ticker-scroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
+}
+
+.ticker {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 42s linear infinite;
+  animation: ticker-scroll 30s linear infinite !important;
   will-change: transform;
 }
 
 .ticker:hover .ticker-track,
 .ticker:focus-within .ticker-track {
   animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ticker-track {
-    animation: none;
-    overflow-x: auto;
-  }
 }
