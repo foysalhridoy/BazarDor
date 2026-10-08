@@ -35,11 +35,13 @@ export default function ProfilePage() {
 
         {/* User Profile Card */}
         <div className="flex flex-col items-center gap-6 rounded-3xl border border-base-300 bg-base-100 p-8 shadow-sm sm:flex-row sm:items-center">
-          <span className="avatar avatar-placeholder">
-            <span className="w-24 rounded-2xl bg-primary text-3xl font-bold text-primary-content shadow-md">
-              {session?.user?.name ? session.user.name.charAt(0) : "ইউ"}
-            </span>
-          </span>
+          <div className="avatar placeholder shrink-0">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary text-primary-content flex items-center justify-center text-3xl sm:text-4xl font-bold shadow-md ring-4 ring-primary/15 aspect-square">
+              <span>
+                {session?.user?.name ? session.user.name.charAt(0).toUpperCase() : "ইউ"}
+              </span>
+            </div>
+          </div>
 
           <div className="min-w-0 flex-1 text-center sm:text-left">
             <h2 className="text-2xl font-bold text-base-content">

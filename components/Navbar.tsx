@@ -64,9 +64,9 @@ export default function Navbar({ categories }: NavbarProps) {
                 className="btn btn-ghost btn-sm sm:btn-md gap-2"
                 title="প্রোফাইল দেখুন"
               >
-                <span className="avatar avatar-placeholder">
-                  <span className="w-7 rounded-full bg-primary text-xs text-primary-content font-bold">
-                    {session.user.name ? session.user.name.charAt(0) : "ইউ"}
+                <span className="avatar placeholder shrink-0">
+                  <span className="w-8 h-8 rounded-full bg-primary text-xs text-primary-content font-bold flex items-center justify-center ring-2 ring-primary/20 aspect-square">
+                    {session.user.name ? session.user.name.charAt(0).toUpperCase() : "ইউ"}
                   </span>
                 </span>
                 <span className="hidden sm:inline font-medium">
