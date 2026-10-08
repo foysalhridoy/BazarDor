@@ -58,28 +58,65 @@ export default function Navbar({ categories }: NavbarProps) {
               <div className="skeleton h-9 w-20 rounded-lg"></div>
             </div>
           ) : session?.user ? (
-            <div className="flex items-center gap-2">
-              <Link
-                href="/profile"
-                className="btn btn-ghost btn-sm sm:btn-md gap-2"
-                title="প্রোফাইল দেখুন"
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-sm sm:btn-md gap-2 px-2 sm:px-3 rounded-full hover:bg-base-200"
               >
                 <span className="avatar placeholder shrink-0">
                   <span className="w-8 h-8 rounded-full bg-primary text-xs text-primary-content font-bold flex items-center justify-center ring-2 ring-primary/20 aspect-square">
                     {session.user.name ? session.user.name.charAt(0).toUpperCase() : "ইউ"}
                   </span>
                 </span>
-                <span className="hidden sm:inline font-medium">
-                  {session.user.name || "প্রোফাইল"}
+                <span className="font-semibold text-sm text-base-content max-w-[130px] truncate">
+                  {session.user.name || "ব্যবহারকারী"}
                 </span>
-              </Link>
-              <button
-                type="button"
-                onClick={handleSignOut}
-                className="btn btn-outline btn-error btn-sm sm:btn-md"
+                <span className="text-xs text-base-content/60 -ms-1">▾</span>
+              </div>
+
+              <div
+                tabIndex={0}
+                className="dropdown-content z-50 mt-2 w-64 rounded-2xl border border-base-200 bg-base-100 p-3 shadow-xl"
               >
-                সাইন আউট
-              </button>
+                {/* User info header */}
+                <div className="px-3 py-2 border-b border-base-200 mb-1">
+                  <p className="font-bold text-sm text-base-content truncate">
+                    {session.user.name || "ব্যবহারকারী"}
+                  </p>
+                  <p className="text-xs text-base-content/60 truncate mt-0.5">
+                    {session.user.email}
+                  </p>
+                </div>
+
+                {/* Menu items */}
+                <ul className="menu menu-sm p-0 gap-1 mt-1">
+                  <li>
+                    <Link
+                      href="/profile"
+                      className="flex items-center gap-2.5 py-2 px-3 rounded-xl hover:bg-base-200 font-medium text-base-content"
+                      onClick={() => {
+                        if (document.activeElement instanceof HTMLElement) {
+                          document.activeElement.blur();
+                        }
+                      }}
+                    >
+                      <span className="text-base text-primary">👤</span>
+                      <span>আমার প্রোফাইল</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={handleSignOut}
+                      className="flex items-center gap-2.5 py-2 px-3 rounded-xl text-error hover:bg-error/10 font-medium"
+                    >
+                      <span className="text-base">↩</span>
+                      <span>সাইন আউট</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           ) : (
             <div className="flex items-center gap-2">
