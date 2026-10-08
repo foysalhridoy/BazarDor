@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: "Google Sans", "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: var(--fallback-b2, oklch(var(--b2) / 1));
+    color: var(--fallback-bc, oklch(var(--bc) / 1));
+  }
+}
+
+/* Custom grocery price direction indicator colors */
+/* In daily bazaar markets: price rise (▲) is negative/red, price drop (▼) is positive/green */
+.price-up {
+  color: #dc2626 !important;
+}
+
+.price-down {
+  color: #16a34a !important;
+}
+
+.price-flat {
+  color: #64748b !important;
+}
+
+/* Marquee Price Ticker */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 42s linear infinite;
+  will-change: transform;
+}
+
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    overflow-x: auto;
+  }
+}
