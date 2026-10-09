@@ -72,7 +72,7 @@ npm install
 ৩. এনভায়রনমেন্ট ভেরিয়েবল সেট করুন (`.env.local` তৈরি করুন):
 ```env
 BETTER_AUTH_SECRET="bazardor_super_secret_auth_token_key_2026_exam"
-BETTER_AUTH_URL="http://localhost:3000"
+BETTER_AUTH_URL="https://baazardoor.vercel.app/"
 ```
 
 ৪. ডেভেলপমেন্ট সার্ভার চালু করুন:
