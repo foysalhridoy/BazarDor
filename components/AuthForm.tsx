@@ -27,6 +27,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,6 +45,14 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
     if (password.length < 4) {
       errs.password = `পাসওয়ার্ড কমপক্ষে ${toBanglaDigits(4)} অক্ষরের হতে হবে।`;
+    }
+
+    if (isSignUp) {
+      if (!confirmPassword) {
+        errs.confirmPassword = "পাসওয়ার্ড পুনরায় লিখুন।";
+      } else if (password !== confirmPassword) {
+        errs.confirmPassword = "পাসওয়ার্ড দুটি মিলছে না।";
+      }
     }
 
     return errs;
@@ -242,6 +251,27 @@ export default function AuthForm({ mode }: AuthFormProps) {
             <span className="mt-1 text-xs text-error">{errors.password}</span>
           )}
         </div>
+
+        {isSignUp && (
+          <div className="form-control w-full">
+            <label className="label-text mb-1 font-medium text-base-content/80">
+              পাসওয়ার্ড পুনরায় লিখুন
+            </label>
+            <input
+              type="password"
+              autoComplete="new-password"
+              placeholder="পাসওয়ার্ড পুনরায় লিখুন"
+              className={`input input-bordered w-full ${
+                errors.confirmPassword ? "input-error" : ""
+              }`}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            {errors.confirmPassword && (
+              <span className="mt-1 text-xs text-error">{errors.confirmPassword}</span>
+            )}
+          </div>
+        )}
 
         <button
           type="submit"
